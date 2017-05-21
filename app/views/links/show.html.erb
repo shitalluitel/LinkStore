@@ -1,0 +1,97 @@
+<div class="catagory">
+  <div class="row">
+
+    <div class="col-xs-12 col-md-12 ">
+      <div class="col-xs-12 col-sm-8 col-md-6">
+        <%= form_tag link_path, method: 'get' do %>
+            <div class="col-xs-12 col-sm-8 col-md-6 form-group">
+              <%= text_field_tag :search, params[:search], :class => "form-control" %>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-6">
+              <%= submit_tag "Search", :name => nil, :class => "btn btn-success" %>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="col-xs-12 col-sm-4 col-md-6">
+        <a href="<%= new_topic_path %>" class="btn btn-primary pull-right"><i class="fa fa-plus">&nbsp;</i>Add</a>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12">
+      <hr>
+    </div>
+
+    <div class="col-xs-12 col-md-12 ">
+      <% if !@links.present? %>
+          <div class="text-center text-primary">
+            <h3>Links not created.</h3>
+            <a href="<%= new_link_path %>" class="btn btn-success"> <i class="fa fa-plus">&nbsp;&nbsp;</i>Create</a>
+          </div>
+      <% else %>
+          <% @links.each do |f| %>
+              <div class="col-md-6 ">
+                <div class="panel panel-primary">
+                  <div class="panel-body">
+                    <div class="fa-icon">
+                      <div class="pull-right">
+                        <a data-confirm="Are you sure to delete" rel="nofollow" title="Delete Record" data-toggle="toggle" data-method="delete" href="<%= link_path(f) %>">
+                            <span>
+                              <i class="fa fa-trash fa-hide">&nbsp;</i>
+                            </span>
+                        </a>
+                        <a href="<%= edit_link_path(f) %>" data-toggle="toggle" title="Edit Record">
+                            <span>
+                              <i class="fa fa-edit fa-hide">&nbsp;</i>
+                            </span>
+                        </a>
+                        <% if f.favorite %>
+                            <i class="fa fa-star link-fav fa-hide"  data-toggle="toggle" title="Favourite" name="<%= f.id %>" style="color: #f4bd2b">&nbsp;</i>
+                        <% else %>
+                            <i class="fa fa-star link-fav fa-hide"  data-toggle="toggle" title="Favourite" name="<%= f.id %>" >&nbsp;</i>
+                        <% end %>
+                        <a tabindex="0" role="button" data-container="body" data-placement="bottom" title="Description" data-toggle="popover" data-trigger="focus" data-content="<%= f.description %>"><i class="fa fa-eye text-info text-right" style="color: #648fa5;"></i></a>
+                      </div>
+                    </div>
+
+                    <div class="databody">
+                      <a itemprop="url" href="<%= f.link %>" target = "_blank">
+                        <h2 class="post-title"><%= f.name %></h2>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= will_paginate @links, renderer: BootstrapPagination::Rails %>
+
+<script type="text/javascript" charset="utf-8">
+  $('body').on('click','.link-fav',function(e){
+    var row = $(this).closest('div');
+    var fav = $('.link-fav',row);
+    var name_value = fav.attr("name");
+    $.ajax({
+      url: '/links/' + name_value + '/update',
+      error: function () {
+        $('#info').html('<p>An error has occurred</p>');
+      },
+      success: function (data) {
+        if (data != ''){
+          fav.css('color','#f4bd2b');
+        }else{
+          fav.css('color','#c2c2c2');
+        }
+      },
+      type: 'GET'
+    });
+  });
+
+  $(document).ready(function () {
+    $('[data-toggle="popover"]').popover();
+    $('[data-toggle="toggle"]').tooltip();
+  });
+</script>

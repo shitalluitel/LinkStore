@@ -1,0 +1,30 @@
+<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="10">
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+
+    <a class="navbar-brand" href="<%= unauthenticated_root_path %>">LinkStore</a>
+    <a class="brand" href="<%= unauthenticated_root_path %>">
+      <!-- <label class="logo">
+           <label class="text-success">Link</label><label class="text-primary">Store</label></label>-->
+      <strong><span class="text text-success">Link</span><span class="text text-primary">Store</span></strong>
+    </a>
+  </div>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#whattodo">Home</a></li>
+      <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#features">Features</a></li>
+      <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#work">Our Work</a></li>
+      <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#team">Our Team</a></li>
+      <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#learnmore">Learn More</a></li>
+      <li><a data-toggle="collapse" data-target=".navbar-collapse" href="<%= new_user_session_path %>">Login</a></li>
+      <li><a data-toggle="collapse" data-target=".navbar-collapse" href="<%= new_user_registration_path %>">Sign Up</a></li>
+    </ul>
+  </div>
+</nav>

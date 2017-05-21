@@ -1,0 +1,146 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2  ">
+
+    <% if @link.errors.any? %>
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <ul>
+            <% @link.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="well">
+      <%= form_for @link do |f| %>
+          <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-3">Category<span class="text-danger">*</span></label>
+              <div class="col-md-9">
+                <%= f.collection_select :category_id, @category_list, :id, :name, {prompt: "Select Category"}, :class => "form-control select category-select" %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-md-3">Topic<span class="text-danger">*</span></label>
+              <div class="col-md-9">
+                <%= f.select(:topic_id, options_for_select([["Select Topic",""]]),{},{:class=>"form-control select topic-select"})%>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-md-3">Name <span class="text-danger">*</span></label>
+              <div class="col-md-9">
+                <% if @link.errors[:name].any? %>
+                    <%= f.text_field :name, :class=>"form-control", :placeholder => "Youtube", :style => "border-color: red; background-color: rgb(255, 230, 230);" %>
+                <% else %>
+                    <%= f.text_field :name, :class=>"form-control", :placeholder => "Youtube" %>
+                <% end %>
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-md-3">Link <span class="text-danger">*</span></label>
+              <div class="col-md-9">
+                <% if @link.errors[:link].any? %>
+                  <%= f.text_field :link, :class=>"form-control", :placeholder => "https://www.youtube.com", :style => "border-color: red; background-color: rgb(255, 230, 230);" %>
+                <% else %>
+                  <%= f.text_field :link, :class=>"form-control", :placeholder => "https://www.youtube.com" %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-md-3">Description </label>
+              <div class="col-md-9">
+                <%= f.text_area :description,:rows => 4, :style => "resize: none;", :class=>"form-control", :placeholder => "Few words describing this link." %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-md-3">Favorite </label>
+              <div class="col-md-9">
+                <div class="check-box">
+                  <%= f.check_box :favorite %>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <div class="col-md-offset-3 col-md-4">
+                <%= f.submit "Submit", :class => "btn btn-primary"%>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+ $('body').on('change','.category-select', function(){
+   var category = $('.category-select'),
+       topic = $('.topic-select');
+   if (category.val() == '') {
+     topic.empty().append(new Option("Select Topic", " "))
+   }else{
+     $.ajax({
+       url: '/topics/' + category.val() + '/category/topics',
+       error: function () {
+         console.log("error");
+       },
+       success: function (data) {
+         if (!$.trim(data)){
+           topic.empty().append(new Option("Select Topic", " "))
+         }else{
+           topic.empty().append(new Option("Select Topic", " "))
+           for (var i = 0; i < data.length; i++) {
+             var id = data[i].id;
+             var title = data[i].name;
+             topic.append(new Option(title, id));
+           }
+         }
+       },
+       type: 'GET'
+     });
+   }
+ });
+ $(document).ready(function(){
+   var category = $('.category-select'),
+       topic = $('.topic-select');
+   if (category.val() == '') {
+     topic.empty().append(new Option("Select Topic", " "))
+   }else{
+     $.ajax({
+       url: '/topics/' + category.val() + '/category/topics',
+       error: function () {
+         console.log("error");
+       },
+       success: function (data) {
+         var options = "";
+         if (!$.trim(data)){
+           topic.empty().append(new Option("Select Topic", " "));
+         }else{
+           topic.empty().append(new Option("Select Topic", " "));
+           for (var i = 0; i < data.length; i++) {
+             <% if @topic.present? %>
+               if (data[i].id == <%= @topic %>){
+                 topic.empty().append(new Option(data[i].name, data[i].id));
+               }else{
+                 options += '<option value="' +data[i].id + '">' +data[i].name + '<>';
+               }
+             <% else %>
+              topic.empty().append(new Option("Select Topic", " "));
+             <% end %>
+           }
+           topic.append(options);
+         }
+       },
+       type: 'GET'
+     });
+   }
+ });
+</script>

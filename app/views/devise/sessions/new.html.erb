@@ -1,0 +1,67 @@
+<div id="home">
+  <div class="container1" id="abc">
+    <%= render "shared/navigationhome" %>
+    <br>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+          <% unless flash.empty? %>
+              <script type="text/javascript">
+                <% flash.each do |f| %>
+                <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+                toastr['<%= type %>']('<%= f[1] %>');
+                <% end %>
+              </script>
+          <% end %>
+
+          <div class="login-form">
+            <div class="row ">
+              <div class="inventory-title">
+                <div class="col-md-12">
+                  <h2 class="text-center page-heading"> Login</h2>
+                  <hr class="hrblack">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                    <div class="col-md-12">
+                      <label>Email</label>
+                      <div class="form-group">
+                        <%= f.text_field :email, autofocus: true, :class => 'form-control ', :placeholder => 'Username or Email Address' %>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <label>Password</label>
+                      <div class="form-group">
+                        <%= f.password_field :password, autocomplete: "off", :class => 'form-control', :placeholder => 'Password' %>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <%= f.submit "Log in", :class => 'btn btn-primary btn-block' %>
+                      <br>
+                    </div>
+                    <div class="col-md-6">
+                      <% if devise_mapping.rememberable? -%>
+                        <span class=" pull-left">
+                           <%= f.check_box :remember_me %>Remember Me
+                       </span>
+                      <% end -%>
+                    </div>
+                    <div class="col-md-6 text-right" >
+                      <% if devise_mapping.recoverable? -%>
+                          <%= link_to "Forgot password?", new_password_path(resource_name), :style => "color: white; text-decoration: none;"%>
+                      <% end -%>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render "shared/footer" %>
+</div>

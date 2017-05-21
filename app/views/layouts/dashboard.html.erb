@@ -1,0 +1,27 @@
+<%= render "shared/header" %>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<div class="vertical-bar goToTop">
+  <%= render "shared/navigation" %>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<div class="container">
+  <div class="overflow">
+    <%= render "shared/breadcrumb" %>
+    <% unless flash.empty? %>
+        <script type="text/javascript">
+          <% flash.each do |f| %>
+          <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+          toastr['<%= type %>']('<%= f[1] %> ');
+          <% end %>
+        </script>
+    <% end %>
+    <%= yield %>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function () {
+  $('.select').select2();
+});
+</script>
+</body>
+</html>

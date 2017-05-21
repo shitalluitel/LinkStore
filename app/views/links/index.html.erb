@@ -1,0 +1,177 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-4">
+      <label class="col-md-4 control-label text-right">Category</label>
+      <div class="col-md-8 ">
+        <%= select_tag 'catagoryid', options_for_select(@category_list.collect { |u| [u.name, u.id] }), :prompt => "Select Unit", :class => "form-control select category-select" %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label class="col-md-4 control-label text-right">Topic</label>
+      <div class="col-md-8 ">
+        <select class="form-control select select-topic">
+          <option value="">Select Topic</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="col-xs-12 col-sm-8 col-md-6 form-group">
+        <input type="text" class="form-control input-search">
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-6">
+        <p class="btn btn-success btn-search">Search</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <br>
+    <hr>
+    <br>
+  </div>
+  <div class="col-md-12 link catagory">
+    <div class="text-center text-primary link-remove category-remove">
+      <h3>Links not created.</h3>
+      <a href="<%= new_topic_path %>" class="btn btn-success"> <i class="fa fa-plus">&nbsp;&nbsp;</i>Create</a>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  $('body').on('change', '.select-topic', function () {
+    var selectbox = $('.select-topic');
+    if (selectbox.val() != '') {
+      $.ajax({
+        url: '/links/' + selectbox.val() + '/category/topic/links',
+        error: function () {
+          $('#info').html('<p>An error has occurred</p>');
+        },
+        success: function (data) {
+          if (!$.trim(data)) {
+            $('div.link-remove').remove();
+            var add_div = '<div class="text-center text-primary link-remove catagory-remove"><h3>Links not created.</h3> <a href="/links/new" class="btn btn-success"> <i class="fa fa-plus">&nbsp;&nbsp;</i>Create</a> </div>';
+            $('div.link').append(add_div);
+          } else {
+            $('div.link-remove').remove();
+            for (i = 0; i < data.length; i++) {
+              var adddata = "";
+              adddata = '<div class="col-md-6 link-remove category-remove"><div class="panel panel-primary" >';
+              adddata += ' <div class="panel-body"><div class="fa-icon"><div class="pull-right"><a data-confirm="Are you sure to delete" rel="nofollow" title="Delete Record" data-toggle="toggle" data-method="delete" href="/links/' + data[i].id ;
+              adddata += '"><span><i class="fa fa-trash ">&nbsp;</i></span></a><a href="links/' + data[i].id +'/edit';
+              adddata += '"><span><i class="fa fa-edit ">&nbsp;</i></span></a>';
+              if (data[i].favorite == true){
+                adddata += '<i class="fa fa-star link-fav fa-hide" style="color: #f4bd2b" name="' + data[i].id + '">&nbsp;</i>';
+              }else{
+                adddata += ' <i class="fa fa-star link-fav fa-hide" name="' + data[i].id + '" >&nbsp;</i>';
+              }
+              adddata += '<a tabindex="0" role="button" class="popovertitle" data-container="body" data-placement="bottom" title="' + data[i].description + '"><i class="fa fa-eye text-info text-right" style="color: #648fa5;"></i></a>';
+              adddata += '</div></div><div class="databody"> <a itemprop="url" href="'+ data[i].link + '" target="_blank">';
+              adddata += '<h2 class="post-title">' + data[i].name + '</h2></a></div></div></div>';
+              $('div.link').append(adddata);
+            }
+
+          }
+        },
+        type: 'GET'
+      });
+    }else{
+      $('div.link-remove').remove();
+      var add_div = '<div class="text-center text-primary link-remove catagory-remove"><h3>Links not created.</h3> <a href="/links/new" class="btn btn-success"> <i class="fa fa-plus">&nbsp;&nbsp;</i>Create</a> </div>';
+      $('div.link').append(add_div);
+    }
+  });
+
+  $('body').on('click', '.btn-search', function () {
+    var selectbox = $('.select-topic');
+    if (selectbox.val() != '') {
+      $.ajax({
+        url: '/links/' + selectbox.val() + '/category/topic/links?utf8=✓&search=' + $('.input-search').val(),
+        error: function () {
+          $('#info').html('<p>An error has occurred</p>');
+        },
+        success: function (data) {
+          if (!$.trim(data)) {
+            $('div.link-remove').remove();
+            var add_div = '<div class="text-center text-primary link-remove category-remove"><h3>Topics not created for this catagory.</h3> <a href="/topics/new" class="btn btn-success"> <i class="fa fa-plus">&nbsp;&nbsp;</i>Create</a> </div>'
+            $('div.link').append(add_div);
+          } else {
+            $('div.link-remove').remove();
+            for (i = 0; i < data.length; i++) {
+              var adddata = "";
+              adddata = '<div class="col-md-6 link-remove category-remove"><div class="panel panel-primary" title="' + data[i].description + '">';
+              adddata += ' <div class="panel-body"><div class="fa-icon"><div class="pull-right"><a data-confirm="Are you sure to delete" rel="nofollow" title="Delete Record" data-toggle="toggle" data-method="delete" href="/links/' + data[i].id ;
+              adddata += '"><span><i class="fa fa-trash ">&nbsp;</i></span></a><a href="links/' + data[i].id +'/edit';
+              adddata += '"><span><i class="fa fa-edit ">&nbsp;</i></span></a>';
+              if (data[i].favorite == true){
+                adddata += '<i class="fa fa-star link-fav fa-hide" name="' + data[i].id + '"style="color: #f4bd2b" >&nbsp;</i>';
+              }else{
+                adddata += ' <i class="fa fa-star link-fav fa-hide" name="' + data[i].id + '">&nbsp;</i>';
+              }
+              adddata += '<a tabindex="0" role="button" class="popovertitle" data-container="body" data-placement="bottom" title="' + data[i].description + '"><i class="fa fa-eye text-info text-right" style="color: #648fa5;"></i></a>';
+              adddata += '</div></div><div class="databody"> <a itemprop="url" href="'+ data[i].link + '" target="_blank">';
+              adddata += '<h2 class="post-title">' + data[i].name + '</h2></a></div></div></div>';
+              $('div.link').append(adddata);
+            }
+
+          }
+        },
+        type: 'GET'
+      });
+    }
+    $('[data-toggle="popover"]').popover();
+  });
+
+  $('body').on('change', '.category-select', function () {
+    var category = $('.category-select'),
+        topic = $('.select-topic');
+    if (category.val() == '') {
+      topic.empty().append(new Option("Select Topic", " "));
+    }else{
+      $.ajax({
+        url: '/topics/' + category.val() + '/category/topics',
+        error: function () {
+          console.log("error");
+        },
+        success: function (data) {
+          if (!$.trim(data)){
+            topic.empty().append(new Option("Select Topic", " "));
+          }else{
+            topic.empty().append(new Option("Select Topic", " "));
+            for (var i = 0; i < data.length; i++) {
+              var id = data[i].id;
+              var title = data[i].name;
+              topic.append(new Option(title, id));
+            }
+          }
+        },
+        type: 'GET'
+      });
+    }
+  });
+
+  $('body').on('click','.link-fav',function(e){
+    var row = $(this).closest('div');
+    var fav = $('.link-fav',row);
+    var name_value = fav.attr("name");
+    $.ajax({
+      url: '/links/' + name_value + '/update',
+      error: function () {
+        $('#info').html('<p>An error has occurred</p>');
+      },
+      success: function (data) {
+        if (data != ''){
+          fav.css('color','#f4bd2b');
+        }else{
+          fav.css('color','#c2c2c2');
+        }
+      },
+      type: 'GET'
+    });
+    $('[data-toggle="popover"]').popover();
+  });
+
+  $(document).ready(function () {
+    $('[data-toggle="popover"]').popover();
+  });
+</script>

@@ -1,0 +1,143 @@
+<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="10" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-main" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand logo" href="<%= unauthenticated_root_path %>">
+        <strong><span class="text-success">Link</span><span class="text-primary">Store</span></strong></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbar-space">
+      <div class="collapse navbar-collapse" id="navbar-collapse-main">
+        <div class="container">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-plus">&nbsp;</i>Add<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="<%= new_category_path %>">
+                    <span>
+                      <i class="fa fa-tree fa-fw">&nbsp;</i>
+                    </span>
+                    Category
+                  </a>
+                </li>
+
+                <li>
+                  <a href="<%= new_topic_path %>">
+                    <span>
+                      <i class="fa fa-book fa-fw">&nbsp;</i>
+                    </span>Title
+                  </a>
+                </li>
+
+                <li>
+                  <a href="<%= new_link_path %>">
+                    <span>
+                      <i class="fa fa-link fa-fw">&nbsp;</i>
+                    </span>Link
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-binoculars">&nbsp;</i>View<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="<%= categories_path %>">
+                    <span>
+                      <i class="fa fa-tree fa-fw">&nbsp;</i>
+                    </span>
+                    Category
+                  </a>
+                </li>
+                <li>
+                  <a href="<%= topics_path %>">
+                    <span>
+                      <i class="fa fa-book fa-fw">&nbsp;</i>
+                    </span>Topics
+                  </a>
+                </li>
+                <li>
+                  <a href="<%= links_path %>">
+                    <span>
+                      <i class="fa fa-link fa-fw">&nbsp;</i>
+                    </span>Links
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-star">&nbsp;</i>Favorite<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="<%= favorite_categories_path %>">
+                    <span>
+                      <i class="fa fa-tree fa-fw">&nbsp;</i>
+                    </span>
+                    Category
+                  </a>
+                </li>
+                <li>
+                  <a href="<%= favorite_list_topics_path %>">
+                    <span>
+                      <i class="fa fa-book fa-fw">&nbsp;</i>
+                    </span>Topics
+                  </a>
+                </li>
+                <li>
+                  <a href="<%= favorite_list_links_path %>">
+                    <span>
+                      <i class="fa fa-link fa-fw">&nbsp;</i>
+                    </span>Links
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span><i class="fa fa-user fa-fw">&nbsp;</i></span>
+                Shital Luitel
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/">
+                  <span>
+                    <i class="fa fa-edit fa-fw">&nbsp; </i>
+                  </span>
+                    Change Password
+                  </a>
+                </li>
+                <li>
+                  <a href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow">
+                  <span>
+                    <i class="fa fa-sign-out fa-fw">&nbsp;</i>
+                  </span>
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div><!-- /.navbar-collapse -->
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>

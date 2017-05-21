@@ -1,0 +1,71 @@
+<%= render "shared/header" %>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<%= yield %>
+<script>
+  $(document).ready(function () {
+    $(".brand").hide();
+    $("#video-english").hide();
+    $("#btn-nepali").hide();
+
+    $('body').scrollspy({target: ".navbar", offset: 50});
+
+    $("#myNavbar a").on('click', function (event) {
+      if (this.hash !== "") {
+        event.preventDefault();
+        var hash = this.hash;
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top - 40
+
+        }, 1000, function () {
+
+          window.location.hash = hash;
+        });
+      }
+    });
+    var url = window.location;
+    // Will only work if string in href matches with location
+    $('ul.nav a[href="' + url + '"]').parent().addClass('active');
+
+    // Will also work for relative and absolute hrefs
+    $('ul.nav a').filter(function () {
+      return this.href == url;
+    }).parent().addClass('active').parent().parent().addClass('active');
+  });
+
+  $(window).scroll(function () {
+    var height = $(this).scrollTop();
+    var brand = $(".brand");
+    var navbar = $(".navbar-brand");
+    if (height > 10) {
+      navbar.hide();
+      brand.show();
+
+    }
+    else {
+      navbar.show();
+      brand.hide();
+    }
+  });
+
+  AOS.init({
+    disabled: "mobile",
+  });
+
+  $('#btn-english').on('click', function () {
+    $('#btn-english').hide();
+    $('#btn-nepali').show();
+    $('#video-frame').remove();
+    $('#video').append('<iframe id="video-frame" width="100%" height="315" src="https://www.youtube.com/embed/eCnbKZqDSCc" frameborder="0" allowfullscreen></iframe>')
+  });
+
+  $('#btn-nepali').on('click', function () {
+    $('#btn-nepali').hide();
+    $('#btn-english').show();
+    $('#video-frame').remove();
+    $('#video').append('<iframe id="video-frame" width="100%" height="315" src="https://www.youtube.com/embed/eCnbKZqDSCc" frameborder="0" allowfullscreen></iframe>')
+  });
+
+
+</script>
+</body>
+</html>

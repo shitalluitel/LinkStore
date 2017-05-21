@@ -1,0 +1,94 @@
+<div id="home">
+  <div id="abc">
+    <%= render "shared/navigationhome" %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+
+
+          <div class="login-form">
+            <div class="row ">
+              <div class="inventory-title">
+                <div class="col-md-12">
+                  <h2 class="text-center page-heading">Sign Up</h2>
+                  <hr class="hrblack">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                    <div class="col-md-12">
+                      <label>Email*</label>
+                      <div class="form-group">
+                        <% if resource.errors[:email].any? %>
+                            <input class=" form-control popovertitle" data-container="body" data-placement="right"
+                                   data-html = "true" data-trigger="hover" data-toggle="popover"
+                                   style="border-color: #fd0404; background-color: #ffb7b7;"
+                                   type="email" value="" name="user[email]" id="user_email" data-toggle="toggle"
+                                   data-content="<% resource.errors[:email].each do |errors| %>
+                                                 <%= errors.capitalize %><br/>
+                                              <% end %> ">
+                        <% else %>
+                            <%= f.email_field :email, autofocus: true, :class => "form-control" %>
+                        <% end %>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label>Password*</label>
+                      <div class="form-group">
+                        <% if resource.errors[:password].any? %>
+                            <input autocomplete="off" style="border-color: #fd0404; background-color: #ffb7b7;"
+                                   type="password" name="user[password]" id="user_password"
+                                   class=" form-control popovertitle" data-container="body" data-placement="right"
+                                   data-html = "true" data-trigger="hover" data-toggle="popover"
+                                   data-content="<% resource.errors[:password].each do |errors| %>
+                                                 <%= errors.capitalize %><br/>
+                                              <% end %> ">
+                        <% else %>
+                            <%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
+                        <% end %>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label>Confirm Password*</label>
+                      <div class="form-group">
+                        <% if @user.errors[:password_confirmation] .present? %>
+                            <input autocomplete="off" style="border-color: #fd0404; background-color: #ffb7b7;"
+                                   type="password" name="user[password_confirmation]" id="user_password_confirmation"
+                                   class=" form-control popovertitle" data-container="body" data-placement="right"
+                                   data-html = "true" data-trigger="hover" data-toggle="popover"
+                                   data-content="<% resource.errors[:password_confirmation].each do |errors| %>
+                                                 <%= errors.capitalize %><br/>
+                                              <% end %> ">
+                        <% else %>
+                            <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control" %>
+                        <% end %>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-md-12 actions">
+                        <%= f.submit "Sign up", :class => "btn btn-primary btn-block" %>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render "shared/footer" %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+  $(document).ready(function () {
+    $('[data-toggle="popover"]').popover();
+  });
+</script>

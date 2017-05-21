@@ -1,0 +1,309 @@
+<div id="home">
+  <div class="container-fluid container1" id="abc">
+    <%= render "shared/navigationhome" %>
+    <section class="heading">
+      <h2 class="text-center text-heading page-heading" data-aos="zoom-out-up" data-aos-delay="500" data-aos-duration="2000" data-aos-offset="0">LinkStore</h2>
+      <hr class="hrblack" data-aos="zoom-in-up" data-aos-delay="1500" data-aos-duration="2000" data-aos-offset="0">
+      <p class="text-center sub-heading text-heading" data-aos="zoom-in-down" data-aos-delay="2500" data-aos-duration="2000" data-aos-offset="0">LinkStore enables you to store and retrieve links easier and Faster</p>
+      <br>
+      <div class="row" data-aos="zoom-in-up" data-aos-delay="2500" data-aos-duration="2000" data-aos-offset="0">
+        <div class="col-md-offset-4 col-md-2 col-sm-offset-3 col-sm-3 col-xs-offset-2 col-xs-4">
+          <a href="<%= new_user_registration_path %>" class="btn btn-block headerlink">Sign Up</a>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-4">
+          <a href="<%= new_user_session_path %>" class="btn btn-block headerlink">Login</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div id="body">
+  <section id="whattodo">
+    <div class="container-fluid">
+      <br>
+      <h1 class="text-center text-success text-thin">What Can You Do?</h1>
+      <br>
+      <hr class="hrblue">
+      <br><br>
+      <div class="row">
+        <div class="col-sm-4" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="1000" data-aos-offset="0">
+          <div class="panel text-center">
+            <div class="panel-heading">
+              <i class="fa fa-sliders fa-3x text-yellow"></i>
+              <h3 class="text-blue text-thin">Manage Categories</h3>
+            </div>
+            <div class="panel-body">
+              You can add any categories, edit or remove a category and search for any categories from the list.
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4" data-aos="zoom-in" data-aos-delay="700" data-aos-duration="1000" data-aos-offset="0">
+          <div class="panel text-center">
+            <div class="panel-heading text-center">
+              <i class="fa fa-tasks fa-3x text-yellow"></i>
+              <h3 class="text-blue text-thin">Manage Topics and Links</h3>
+            </div>
+            <div class="panel-body">
+
+              You can add any topics ar links,edit or remove a topic or link and search for any topics or links.
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="900">
+          <div class="panel text-center">
+            <div class="panel-heading">
+              <i class="fa fa-star fa-3x text-yellow"></i>
+              <h3 class="text-blue text-thin">Manage Favourites</h3>
+            </div>
+            <div class="panel-body">
+
+              You can make any link your favourite link, search a link from your favourites and remove any link from
+              your favourites
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+    <br><br>
+  </section>
+
+  <section id="features">
+    <div class="container-fluid">
+      <br>
+      <h1 class="text-success text-center text-thin">
+        Our Features
+      </h1>
+      <br>
+      <hr class="hrblue">
+      <div class="row">
+        <div class="col-sm-6">
+          <%= image_tag("dashboard.png", alt: "Features", class: "img img-responsive featureimage") %>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-12" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1500" data-aos-offset="0">
+              <h3 class="text-blue">
+                <%= image_tag("responsive.png", class: "featureim") %>Responsive Layout</h3>
+            </div>
+            <div class="col-sm-12" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1500" data-aos-offset="0">
+              <p class="featuredescription">LinkStore can be accessed from any sized screen.</p>
+            </div>
+            <div class="col-sm-12" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="1500" data-aos-offset="0">
+              <h3 class="text-blue">
+                <%= image_tag("easy.png", class: "featureim") %>
+                Clean GUI
+              </h3>
+            </div>
+            <div class="col-sm-12" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="1500" data-aos-offset="0">
+              <p class="featuredescription">LinkStore has a clean and attractive GUI.</p>
+            </div>
+            <div class="col-sm-12" data-aos="zoom-in" data-aos-delay="700" data-aos-duration="1500" data-aos-offset="0">
+              <h3 class="text-blue">
+                <%= image_tag("star.png", class: "featureim") %>Maintaining Favourite Lists
+              </h3>
+            </div>
+            <div class="col-sm-12" data-aos="zoom-in" data-aos-delay="700" data-aos-duration="1500" data-aos-offset="0">
+              <p class="featuredescription">You can create a favourite link lists and maintain the lists easily.</p>
+            </div>
+            <div class="col-sm-12" data-aos="zoom-in" data-aos-delay="900" data-aos-duration="1500" data-aos-offset="0">
+              <h3 class="text-blue">
+                <%= image_tag("easy.png", class: "featureim") %>
+                And Many More...
+              </h3>
+            </div>
+            <div class="col-sm-12" data-aos="zoom-in" data-aos-delay="900" data-aos-duration="1500" data-aos-offset="0">
+              <p class="featuredescription">LinkStore is secured, has easy navigation and many others...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="container-fluid">
+      <br>
+      <h1 class="text-success text-center text-thin">
+        Our Work
+      </h1>
+      <br>
+      <hr class="hrblue">
+      <br>
+      <div class="row">
+        <div class="col-md-offset-0 col-md-4 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-10 col-xs-offset-1">
+          <a class="image-with-hover-overlay image-hover-zoom" href="https://www.youtube.com/watch?v=WxPRqdxCwOc&t=30s" target="_blank">
+            <div class="image-hover-overlay bg-grey">
+              <div class="image-hover-overlay-content text-center padding-2x">
+                <h2 class="text-thin">Retailer Management System</h2>
+                <p>It helps to manage all the records and also keep proper track of stocks.</p>
+              </div>
+            </div>
+            <%= image_tag("retailer_management.png", alt: "Retailer Management", class: "img-thumbnail img-size") %>
+            <br>
+          </a>
+          <p class="descriptionimage text-success">Retailer Management System</p>
+        </div>
+
+        <div class="col-md-offset-0 col-md-4 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-10 col-xs-offset-1">
+          <a class="image-with-hover-overlay image-hover-zoom" href="https://aiskabasnet.github.io/school.html" target="_blank">
+            <div class="image-hover-overlay bg-grey">
+              <div class="image-hover-overlay-content text-center padding-2x">
+                <h2 class="text-thin">School Management System</h2>
+                <p>It is a console application that helps in creating, updating or deleting the records of students,
+                  teachers and staffs of school easily.</p>
+              </div>
+            </div>
+            <%= image_tag("school_management.png", class: "img-size img-thumbnail") %>
+            <br>
+          </a>
+          <p class="descriptionimage text-success ">School Management System</p>
+        </div>
+
+        <div class="col-md-offset-0 col-md-4 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-10 col-xs-offset-1">
+          <a class="image-with-hover-overlay image-hover-zoom" href="https://aiskabasnet.github.io/marksheet.html" target="_blank">
+            <div class="image-hover-overlay bg-grey">
+              <div class="image-hover-overlay-content text-center padding-2x">
+                <h2 class="text-thin">Marksheet Creation Software</h2>
+                <p>It is a desktop application built on Java that enables to create marksheets.</p>
+              </div>
+            </div>
+            <%= image_tag("marksheet.png", alt: "Marksheet Generater", class: "img-size img-thumbnail ") %>
+            <br>
+          </a>
+          <p class="descriptionimage text-success">Marksheet Creation Software</p>
+        </div>
+      </div>
+      <br>
+    </div>
+    <br><br>
+  </section>
+
+  <section id="team">
+    <div class="container-fluid">
+      <br>
+      <h1 class="text-success text-center text-thin">
+        Our Team
+      </h1>
+      <br>
+      <hr class="hrblue">
+      <br>
+      <div class="row">
+        <div class="col-md-offset-2 col-md-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+          <a class="image-with-hover-overlay" href="https://shitalluitel.github.io" target="_blank">
+            <div class="image-hover-overlay1 bg-grey">
+              <div class="image-hover-overlay-content text-center padding-2x">
+                <h2 class="text-thin">Shital Babu Luitel</h2>
+                <p>CEO, Ginux Innovation</p>
+              </div>
+            </div>
+            <%= image_tag("shital.png", class: "img-circle img-border img-responsive") %>
+          </a>
+          <h2 class="descriptionimage text-primary">Shital Babu Luitel</h2>
+          <p class="descriptionimage ">CEO, Ginux Innovation</p>
+          <br>
+        </div>
+
+        <div class="col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+          <a class="image-with-hover-overlay" href="https://aiskabasnet.github.io" target="_blank">
+            <div class="image-hover-overlay1 bg-grey">
+              <div class="image-hover-overlay-content text-center padding-2x">
+                <h2 class="text-thin">Aiska Basnet</h2>
+                <p>CEO, Ginux Innovation</p>
+              </div>
+            </div>
+            <%= image_tag("aiska.png", class: "img-circle img-border img-responsive") %>
+          </a>
+          <h2 class="descriptionimage text-primary">Aiska Basnet</h2>
+          <p class="descriptionimage ">CEO, Ginux Innovation</p>
+          <br>
+        </div>
+
+      </div>
+      <br><br><br>
+    </div>
+  </section>
+
+  <section id="learnmore">
+    <div class="container-fluid">
+      <br>
+      <h1 class="text-success text-center text-thin">
+        Learn More
+      </h1>
+      <br>
+      <hr class="hrblue">
+      <br>
+      <div class="row">
+        <div class="col-md-6 col-sm-10 col-sm-offset-1 col-xs-12 " id="video">
+          <iframe id="video-frame" width="100%" height="315" src="https://www.youtube.com/embed/eCnbKZqDSCc" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="col-md-5">
+          <br class="visible-sm visible-xs">
+          <div class="col-sm-12">
+            <h3 class="text-blue">
+              <%= image_tag("video.png", class: "featureim") %>Video</h3>
+          </div>
+          <div class="col-sm-11 col-sm-offset-1">
+            <p class="text-justify" style="color: gray; font-size: 16px;">This video is all about
+              <strong><span class="text-success">Link</span><span class="text-primary">Store</span></strong>.
+              This Video is tutorial describing what
+              <strong><span class="text-success">Link</span><span class="text-primary">Store</span></strong> is?
+              How <strong><span class="text-success">Link</span><span class="text-primary">Store</span></strong> can be
+              benificial?
+              And How To use
+              <strong><span class="text-success">Link</span><span class="text-primary">Store</span></strong>?
+            </p>
+            <a href="#learnmore" class="btn btn-primary" id="btn-english">English</a>
+            <a href="#learnmore" class="btn btn-primary" id="btn-nepali">Nepali</a>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+  </section>
+</div>
+<br><br>
+<div class="container-fluid container2">
+  <footer style="background-color: #337ab7;" id="#aboutus">
+    <br>
+    <h1 class="text-thin text-white text-center">About Us</h1>
+    <hr class="hrwhite">
+    <div class="container">
+      <div class="row">
+        <div class=" col-sm-3">
+          <h3 class="text-white text-thin"><span><i class="fa fa-map">&nbsp;</i></span>Address</h3>
+          <p class="text-white marginleft">Biratnagar, Nepal</p>
+        </div>
+        <div class=" col-sm-3">
+          <h3 class="text-white text-thin"><span><i class="fa fa-phone-square">&nbsp;</i></span>Phone Number</h3>
+          <p class="text-white marginleft"><i class="fa fa-mobile-phone">&nbsp;</i>+977-9842574872</p>
+        </div>
+        <div class=" col-sm-3">
+          <h3 class="text-white text-thin"><span><i class="fa fa-envelope">&nbsp;</i></span>Email</h3>
+          <p class="text-white marginleft">ctalluitel@gmail.com</p>
+        </div>
+        <div class=" col-sm-3">
+          <h3 class="text-white text-thin"><span><i class="fa fa-handshake-o">&nbsp;</i></span>Stay In Touch</h3>
+          <span class="marginleft text-white">
+              <a href="https://facebook.com" target="_blank" style="text-decoration: none; color: white;"><i class="fa fa-facebook-square " style="font-size: 25px">&nbsp;</i></a>
+              <a href="https://twitter.com" target="_blank" style="text-decoration: none; color: white;"><i class="fa fa-twitter-square" style="font-size: 25px">&nbsp;</i></a>
+              <a href="https://youtube.com" target="_blank" style="text-decoration: none; color: white;"><i class="fa fa-youtube-square" style="font-size: 25px">&nbsp;</i></a>
+            </span>
+        </div>
+      </div>
+
+    </div>
+    <br>
+    <br>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <p class="text-center text-white"> Built With <i class="fa fa-heart text-danger"></i> In Biratnagar</p>
+          <p class="text-center text-white">&copy; CopyRight Ginux</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

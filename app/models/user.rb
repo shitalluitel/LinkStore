@@ -11,4 +11,5 @@ class User < ApplicationRecord
   has_many :categories
   has_many :topics
   has_many :links
+  has_one :user_information
 end

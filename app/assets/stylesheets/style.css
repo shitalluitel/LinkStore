@@ -243,3 +243,40 @@ a:focus{
 }
 /*ends here*/
 
+/*others*/
+.text-success{
+    color: #3c763d;
+}
+
+.user-info .form-horizontal .control-label{
+    text-align: left;
+}
+
+.pp-avatar{
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 0 0 2px #c1bbbb;
+    margin-right: 3px;
+    margin: -11px 0px -11px 0;
+}
+
+.pp-left{
+    margin-left: 10px;
+}
+.profile-picture{
+    height: 240px;
+    width:240px;
+}
+
+.menue-username{
+    font-weight: 600;
+}
+
+.hrmenu{
+    border: 1px solid #000000;
+    width: 75px;
+    margin-top: 10px;
+    margin-bottom: 13px;
+}
+/*ends here*/

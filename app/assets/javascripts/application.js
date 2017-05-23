@@ -12,6 +12,7 @@
 //
 //= require jquery.min
 //= require jquery_ujs
+//= require jasny-bootstrap.min
 //= require bootstrap.min
 //= require toastr
 //= require select2.min

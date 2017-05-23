@@ -113,17 +113,73 @@
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <span><i class="fa fa-user fa-fw">&nbsp;</i></span>
-                Shital Luitel
-                <span class="caret"></span></a>
+                <% @user = UserInformation.find_by_user_id(current_user.id) %>
+                <% if @user.nil? %>
+                    <%= image_tag "picture.gif", class: "pp-avatar"%>
+                <% else %>
+                    <% if (@user.first_name.present? or @user.middle_name.present? or @user.last_name.present?) %>
+                        <% if @user.photo.present? %>
+                            <%= image_tag @user.photo.thumb.url, :class => "pp-avatar" %>
+                        <% else %>
+                            <%= image_tag "picture.gif", class: "pp-avatar" %>
+                        <% end %>
+                    <% else %>
+                        <% if @user.photo.present? %>
+                            <%= image_tag @user.photo.thumb.url, :class => "pp-avatar" %>
+                        <% else %>
+                          <%= image_tag "picture.gif", class: "pp-avatar" %>
+                        <% end %>
+                    <% end %>
+                <% end %>
+              </a>
               <ul class="dropdown-menu">
-                <li>
-                  <a href="/">
-                  <span>
-                    <i class="fa fa-edit fa-fw">&nbsp; </i>
-                  </span>
-                    Change Password
+                <li class="text-center">
+                  <a>
+                    <span>
+                      <h4 class="menue-username text-success">
+                        <% if @user.nil? %>
+                           <%= current_user.email %>
+                        <% else %>
+                            <% if (@user.first_name.present? or @user.middle_name.present? or @user.last_name.present?) %>
+
+                                <% if user_signed_in? %>
+                                    <% if @user.first_name.present?%>
+                                        <%= @user.first_name.slice(0, 1).capitalize + @user.first_name.slice(1..-1) %>
+                                    <% end %>
+                                    <% if @user.middle_name.present? %>
+                                        <%= @user.middle_name.slice(0, 1).capitalize + @user.middle_name.slice(1..-1) %>
+                                    <% end %>
+                                    <% if @user.last_name.present?%>
+                                        <%= @user.last_name.slice(0, 1).capitalize + @user.last_name.slice(1..-1) %>
+                                    <% end %>
+                                <% end %>
+
+                            <% else %>
+                                <%= current_user.email %>
+                            <% end %>
+                        <% end %>
+                     </h4>
+                    </span>
                   </a>
+                </li>
+                <hr class="hrmenu">
+                <li>
+                  <% if @user.nil? %>
+                      <a href="<%= new_user_information_path %>">
+                        <span>
+                          <i class="fa fa-user fa-fw">&nbsp; </i>
+                        </span>
+                        Profile
+                      </a>
+                  <% else %>
+                      <a href="<%= edit_user_information_path(1) %>">
+                        <span>
+                          <i class="fa fa-edit fa-fw">&nbsp; </i>
+                        </span>
+                        Change Password
+                      </a>
+                  <% end %>
+
                 </li>
                 <li>
                   <a href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow">

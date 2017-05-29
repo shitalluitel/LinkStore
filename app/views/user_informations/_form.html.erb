@@ -5,98 +5,110 @@
 
           <div class="fileinput fileinput-new" data-provides="fileinput">
             <div class="fileinput-preview " data-trigger="fileinput">
-              <% userphoto = UserInformation.find_by_user_id(current_user.id)%>
+              <% userphoto = UserInformation.find_by_user_id(current_user.id) %>
               <% if userphoto.nil? %>
-                <%= image_tag("picture.gif", alt: "profile ficture", class: "profile-picture")%>
+                  <%= image_tag("picture.gif", alt: "profile ficture", class: "profile-picture") %>
               <% else %>
-                  <%= image_tag userphoto.photo.url, :class => "img img-student img-responsive img-thumbnail" %>
+                  <%= image_tag userphoto.photo.url, :class => "img img-student img-responsive img-thumbnail profile-picture" %>
               <% end %>
             </div>
             <div class="pull-right">
-              <span class="btn-file"><span class="fileinput-new"><i class="fa fa-camera"></i></span><span class="fileinput-exists"><i class="fa fa-camera "></i></span><%= f.file_field :photo%></span>
+              <span class="btn-file"><span class="fileinput-new"><i class="fa fa-camera"></i></span><span class="fileinput-exists"><i class="fa fa-camera "></i></span><%= f.file_field :photo %></span>
             </div>
           </div>
           <br>
-          <a href="<%= edit_user_registration_path %>" class="btn btn-primary">Change Password</a>
+          <a href="<%= edit_user_registration_path %>" class="btn btn-default">User Setting</a>
         </div>
         <div class="col-md-6">
 
           <div class="form-group">
             <label class="control-label col-md-3 text-success ">First Name*</label>
             <div class="col-md-9">
-              <%= f.text_field :first_name, autofocus: true, :class => "form-control", :placeholder => "Enter First Name" %>
+              <%= f.text_field :first_name, autofocus: true, :class => "form-control", :placeholder => "Rachel Sarah" %>
             </div>
           </div>
 
           <div class="form-group">
             <label class="control-label col-md-3 text-success">Middle Name*</label>
             <div class="col-md-9">
-              <%= f.text_field :middle_name, autofocus: true, :class => "form-control", :placeholder => "Enter Middle Name" %>
+              <%= f.text_field :middle_name, autofocus: true, :class => "form-control", :placeholder => "Cruz" %>
             </div>
           </div>
 
           <div class="form-group">
             <label class="control-label col-md-3 text-success">Last Name*</label>
             <div class="col-md-9">
-              <%= f.text_field :last_name, autofocus: true, :class => "form-control", :placeholder => "Enter Last Name" %>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-md-3 text-success">Country</label>
-            <div class="col-md-9">
-              <%= f.text_field :country, autofocus: true, :class => "form-control", :placeholder => "Zeftware Technology" %>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-md-3 text-success">State</label>
-            <div class="col-md-9">
-              <%= f.text_field :state, autofocus: true, :class => "form-control", :placeholder => "Zeftware Technology" %>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-md-3 text-success">Phone Number</label>
-            <div class="col-md-9">
-              <%= f.text_field :phone_no, autofocus: true, :class => "form-control", :placeholder => "Zeftware Technology" %>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-md-3 text-success">City</label>
-            <div class="col-md-9">
-              <%= f.text_field :city, autofocus: true, :class => "form-control", :placeholder => "Zeftware Technology" %>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-md-3 text-success">Religion</label>
-            <div class="col-md-9">
-              <%= f.text_field :religion, autofocus: true, :class => "form-control", :placeholder => "Zeftware Technology" %>
+              <%= f.text_field :last_name, autofocus: true, :class => "form-control", :placeholder => "Domingo" %>
             </div>
           </div>
 
           <div class="form-group">
             <label class="control-label col-md-3 text-success">Date of Birth</label>
             <div class="col-md-9">
-              <%= f.text_field :dob, autofocus: true, :class => "form-control", :placeholder => "Zeftware Technology" %>
+              <%= f.text_field :dob, :class => "form-control ", :id => "datetimepicker" %>
             </div>
           </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 text-success">Religion</label>
+            <div class="col-md-9">
+              <%= f.text_field :religion, autofocus: true, :class => "form-control", :placeholder => "Enter name of your religion" %>
+            </div>
+          </div>
+
 
           <div class="form-group">
             <label class="control-label col-md-3 text-success">Gender*</label>
             <div class="col-md-9">
-              <%= f.text_field :gender, autofocus: true, :class => "form-control", :placeholder => "Zeftware Technology" %>
+              <%= f.select :gender, options_for_select([["Select Gender","1"],["Male","Male"],["Female","Female"]]),{}, class: "form-control"%>
             </div>
           </div>
 
           <div class="form-group">
+            <label class="control-label col-md-3 text-success">City</label>
+            <div class="col-md-9">
+              <%= f.text_field :city, autofocus: true, :class => "form-control", :placeholder => "Enter nme of your city" %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 text-success">State</label>
+            <div class="col-md-9">
+              <%= f.text_field :state, autofocus: true, :class => "form-control", :placeholder => "Enter name of your state" %>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label class="control-label col-md-3 text-success">Country</label>
+            <div class="col-md-9">
+              <%= f.country_select(:country ,{ include_blank: 'Select a country' }, { class: 'form-control' })%>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label class="control-label col-md-3 text-success">Phone Number</label>
+            <div class="col-md-9">
+              <%= f.text_field :phone_no, autofocus: true, :class => "form-control", :placeholder => "Enter your phone number with pin code" %>
+            </div>
+          </div>
+
+
+          <div class="form-group">
             <div class="col-md-offset-3 col-md-2 actions">
-              <%= f.submit "Create", :class => "btn btn-primary" %>
+              <%= f.submit "Submit", :class => "btn btn-success" %>
             </div>
           </div>
         </div>
     <% end %>
   </div>
 </div>
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('#datetimepicker').datetimepicker({
+      viewMode: 'years',
+      format: 'YYYY/MM/DD'
+    });
+  });
+</script>

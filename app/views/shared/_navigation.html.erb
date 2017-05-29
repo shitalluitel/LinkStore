@@ -1,19 +1,19 @@
-<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="10" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-main" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand logo" href="<%= unauthenticated_root_path %>">
-        <strong><span class="text-success">Link</span><span class="text-primary">Store</span></strong></a>
-    </div>
+  <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="10" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-main" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand logo" href="<%= unauthenticated_root_path %>">
+          <strong><span class="text-success">Link</span><span class="text-primary">Store</span></strong></a>
+      </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="navbar-space">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="navbar-space">
       <div class="collapse navbar-collapse" id="navbar-collapse-main">
         <div class="container">
           <ul class="nav navbar-nav">
@@ -79,9 +79,10 @@
                 </li>
               </ul>
             </li>
+
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-star">&nbsp;</i>Favorite<span class="caret"></span>
+                <i class="fa fa-star">&nbsp;</i>Favourite<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
                 <li>
@@ -108,6 +109,8 @@
                 </li>
               </ul>
             </li>
+
+
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
@@ -174,12 +177,11 @@
                   <% else %>
                       <a href="<%= edit_user_information_path(1) %>">
                         <span>
-                          <i class="fa fa-edit fa-fw">&nbsp; </i>
+                          <i class="fa fa-user fa-fw">&nbsp; </i>
                         </span>
-                        Change Password
+                        Profile
                       </a>
                   <% end %>
-
                 </li>
                 <li>
                   <a href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow">

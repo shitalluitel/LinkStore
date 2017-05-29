@@ -12,8 +12,10 @@
 //
 //= require jquery.min
 //= require jquery_ujs
-//= require jasny-bootstrap.min
 //= require bootstrap.min
+//= require jasny-bootstrap.min
+//= require moment
+//= require bootstrap-datetimepicker
 //= require toastr
 //= require select2.min
 //= require select2

@@ -1,34 +1,92 @@
 <% @data = controller.controller_name.to_s.titleize %>
-      <% if @check_title === "Category" %>
-            <div class="page-header">
-              <h3>
-                <%= @data %> <small> | <%=  @title %></small></h4>
-              </h3>
+<% if @check_title === "Category" %>
 
-            </div>
-            <ol class="breadcrumb">
-              <a href="/">Home</a>
-            </ol>
-      <% else %>
-      <% if @data != "Registrations" %>
+    <div class="page-header">
+      <h3>
+        <%= @data %>
+        <small> | <%= @title %></small>
+        </h4>
+      </h3>
+    </div>
+    <ol class="breadcrumb">
+      <a href="/">Home</a>
+    </ol>
+<% elsif @data === "User Informations" %>
+    <div class="page-header">
+      <% @user = UserInformation.find_by_user_id(current_user.id) %>
+      <h3>
+        User Profile
+        <small> |
+          <% if @user.nil? %>
+              <%= current_user.email %>
+          <% else %>
+              <% if (@user.first_name.present? or @user.middle_name.present? or @user.last_name.present?) %>
+
+                  <% if user_signed_in? %>
+                      <% if @user.first_name.present? %>
+                          <%= @user.first_name.slice(0, 1).capitalize + @user.first_name.slice(1..-1) %>
+                      <% end %>
+                      <% if @user.middle_name.present? %>
+                          <%= @user.middle_name.slice(0, 1).capitalize + @user.middle_name.slice(1..-1) %>
+                      <% end %>
+                      <% if @user.last_name.present? %>
+                          <%= @user.last_name.slice(0, 1).capitalize + @user.last_name.slice(1..-1) %>
+                      <% end %>
+                  <% end %>
+
+              <% else %>
+                  <%= current_user.email %>
+              <% end %>
+          <% end %>
+        </small>
+        </h4>
+      </h3>
+    </div>
+    <ol class="breadcrumb">
+      <a href="/">Home</a> / User Profile
+    </ol>
+<% elsif @data === "Registrations" %>
         <div class="page-header">
           <h3>
-            <%= @data %> <small> | <%=  @title %></small></h4>
+            Edit
+            <small> |
+              <% if @user.nil? %>
+                  <%= current_user.email %>
+              <% else %>
+                  <% if (@user.first_name.present? or @user.middle_name.present? or @user.last_name.present?) %>
+
+                      <% if user_signed_in? %>
+                          <% if @user.first_name.present? %>
+                              <%= @user.first_name.slice(0, 1).capitalize + @user.first_name.slice(1..-1) %>
+                          <% end %>
+                          <% if @user.middle_name.present? %>
+                              <%= @user.middle_name.slice(0, 1).capitalize + @user.middle_name.slice(1..-1) %>
+                          <% end %>
+                          <% if @user.last_name.present? %>
+                              <%= @user.last_name.slice(0, 1).capitalize + @user.last_name.slice(1..-1) %>
+                          <% end %>
+                      <% end %>
+
+                  <% else %>
+                      <%= current_user.email %>
+                  <% end %>
+              <% end %>
+            </small>
+            </h4>
           </h3>
 
         </div>
         <ol class="breadcrumb">
-          <%= render_breadcrumbs :tag => :li, :separator => "" %>
+          <a href="<%= authenticated_root_path %>">Home</a><span> / Change Password</span>
         </ol>
-      <% else %>
-        <div class="page-header">
-          <h3>
-            <%= @data %> <small> | <%=  @title %></small></h4>
-          </h3>
+<% else %>
+      <div class="page-header">
+        <h3>
+          <%= @data %> <small> | <%=  @title %></small></h4>
+        </h3>
 
-        </div>
-        <ol class="breadcrumb">
-          <a href="<%= authenticated_root_path %>">Home</a><span> / Setting / Change Password</span>
-        </ol>
-      <% end %>
+      </div>
+      <ol class="breadcrumb">
+        <%= render_breadcrumbs :tag => :li, :separator => "" %>
+      </ol>
 <% end %>

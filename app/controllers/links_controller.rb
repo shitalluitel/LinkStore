@@ -1,8 +1,9 @@
 class LinksController < ApplicationController
   add_breadcrumb "Home", :authenticated_root_path
+  add_breadcrumb "Link", :links_path
   def new
     @title = "Add"
-    add_breadcrumb "Links / New"
+    add_breadcrumb "New"
     @link = Link.new
     @category_list = Category.where("user_id =? ", current_user.id).select(:name, :id).order("name ASC")
   end
@@ -22,7 +23,7 @@ class LinksController < ApplicationController
 
   def edit
     @title = "Edit"
-    add_breadcrumb "Links / Edit"
+    add_breadcrumb "Edit"
     @link = Link.find(params[:id])
     @topic = @link.topic_id
     @category_list = Category.where("user_id =?", current_user.id).select(:name, :id).order("name ASC")
@@ -76,8 +77,8 @@ class LinksController < ApplicationController
   end
 
   def fav_link_all
-    @title = "Favorite | List"
-    add_breadcrumb "Favorite"
+    @title = "Favourite | List"
+    add_breadcrumb "Favourite"
     @link = Link.fav_search_all(params[:search],current_user.id)
     @perpage = 12
     @links = @link.paginate(:page => params[:page], :per_page => @perpage)
